@@ -1,0 +1,155 @@
+/*-- scss:defaults --*/
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+
+$font-family-sans-serif: "Inter", sans-serif;
+$presentation-heading-font: "Inter", sans-serif;
+$presentation-heading-weight: 900;
+$presentation-font-size-root: 40px;
+
+// Colors - A modern, accessible palette
+$indigo: #5856d6;
+$yellow: #ffcc00;
+$red: #ff3b30;
+$green: #34c759;
+$darkblue: #001f3f;
+$lightblue: #007aff;
+
+$body-bg: #f8f9fa;
+$body-color: $darkblue;
+$link-color: $indigo;
+$presentation-heading-color: $darkblue;
+
+/*-- scss:rules --*/
+
+.center {
+  text-align: center;
+}
+
+// Custom highlight classes
+.hl-indigo { color: $indigo; font-weight: bold; }
+.hl-yellow { color: $yellow; font-weight: bold; }
+.hl-red { color: $red; font-weight: bold; }
+.hl-green { color: $green; font-weight: bold; }
+
+// Styling for the frags visualization
+.frag-box {
+  padding: 25px;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  //background-color: white;
+}
+
+.frag-1 {
+  border: 4px solid $red;
+}
+
+.frag-2 {
+  border: 4px solid $red;
+}
+
+.frag-3 {
+  border: 4px solid $red;
+}
+
+.frag-4 {
+  border: 4px solid $indigo;
+}
+
+
+// Dark slide styling for impact moments
+.dark-slide {
+  color: #ffffff;
+  h1, h2, h3 {
+    color: #ffffff;
+  }
+}
+
+// Title slide tweaks keep the default layout but ensure readability.
+#title-slide {
+  color: #ffffff;
+  h1, h2, h3,
+  .subtitle,
+  .quarto-title-author-name,
+  .quarto-title-affiliation,
+  .date {
+    color: #ffffff;
+  }
+}
+
+#title-slide .subtitle {
+  color: $yellow;
+}
+
+#title-slide .date {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* The slide that hosts the journey table: make it a column flexbox so the
+   table automatically fills whatever room is left under the title, no
+   matter how big that title is or what width/height this deck uses. */
+.reveal .slides section:has(> table.journey-table) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.reveal .slides section:has(> table.journey-table) > h1,
+.reveal .slides section:has(> table.journey-table) > h2 {
+  flex: 0 0 auto !important;
+}
+
+.journey-table {
+  border-collapse: collapse;
+  width: 92% !important;         /* a share of the slide's own width, not a fixed px value */
+  flex: 1 1 0 !important;        /* grow/shrink to fill the remaining slide height */
+  min-height: 0 !important;
+  margin: 20px auto 0 auto !important;
+}
+
+.journey-table,
+.journey-table > tbody,
+.journey-table > tbody > tr:first-child,
+.journey-table > tbody > tr:first-child > td {
+  height: 100%;
+}
+
+.journey-table td,
+.journey-table tr:not(:last-child) td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 10px;   /* tighter horizontal gap between images */
+  border: none !important;     /* removes the default pandoc table row rule */
+}
+
+.scenario-img {
+  height: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.scenario-img img {
+  display: block !important;
+  margin: 0 auto !important;
+  max-height: 100% !important;   /* fills the row's flex-allocated height ... */
+  max-width: 96% !important;     /* ... but never wider than its own column */
+  width: auto !important;
+  height: auto !important;
+  border-radius: 6px;
+}
+
+.transform-img img {
+  display: block !important;
+  margin: 14px auto 0 auto !important;
+  width: 90% !important;         /* a share of the slide's width, scales with any deck size */
+  max-width: 1400px !important;  /* keeps the banner from getting absurdly thick on huge slides */
+  height: auto !important;
+}
+
+.transform-cell {
+  padding-top: 4px;
+}

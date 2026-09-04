@@ -1,0 +1,50 @@
+
+```{r}
+#| echo: false
+#| results: asis
+
+# Image paths for the four pieces split out of the original infographic
+imgs <- c(
+  scenario1      = "images/scenario1.png",
+  scenario2      = "images/scenario2.png",
+  scenario3      = "images/scenario3.png",
+  transformation = "images/transformation.png"
+)
+
+# Helper: wrap one image in a reveal.js fragment <div>, so it is revealed
+# incrementally (one click = one fragment appears), in DOM order.
+fragment_cell <- function(path, css_class) {
+  sprintf(
+    '<div class="fragment %s"><img src="%s"></div>',
+    css_class, path
+  )
+}
+
+# Row 1: three columns, one scenario image each (fragments 1, 2, 3)
+row1 <- paste0(
+  "<tr>",
+  "<td>", fragment_cell(imgs[["scenario1"]], "scenario-img"), "</td>",
+  "<td>", fragment_cell(imgs[["scenario2"]], "scenario-img"), "</td>",
+  "<td>", fragment_cell(imgs[["scenario3"]], "scenario-img"), "</td>",
+  "</tr>"
+)
+
+# Row 2: one column spanning all three, the transformation image
+# (fragment 4 - always the last fragment on the slide)
+row2 <- paste0(
+  "<tr>",
+  '<td colspan="3" class="transform-cell">',
+  fragment_cell(imgs[["transformation"]], "transform-img"),
+  "</td>",
+  "</tr>"
+)
+
+html_table <- paste0(
+  '<table class="journey-table">',
+  row1,
+  row2,
+  "</table>"
+)
+
+cat(html_table)
+```
